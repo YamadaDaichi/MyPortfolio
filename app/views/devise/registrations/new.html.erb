@@ -1,0 +1,43 @@
+<main>
+  <p id="notice"><%= flash[:notice] %></p>
+    <div class='row　no-gutters'>
+      <div class="col-md-6 col-sm-6 mx-2 mx-sm-auto shadow-lg rounded shadow-lg rounded px-0 my-5">
+        <h3 class="text-center pt-3">新規登録</h3>
+        <div class="form-body px-5">
+        <hr>
+        <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="form-group">
+            <strong><%= f.label :name %></strong> <span class="text-danger">必須</span><br />
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control' %>
+          </div>
+          <div class="form-grouo">
+            <strong><%= f.label :email %></strong> <span class="text-danger">必須</span><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'%>
+          </div>
+          <div class="form-group">
+            <strong><%= f.label :password %></strong>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %> <span class="text-danger">必須</span><br />
+            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <strong><%= f.label :password_confirmation %></strong> <span class="text-danger">必須</span><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+          </div>
+          <div class="actions">
+            <%= f.submit "新規登録", class: "btn btn-lg btn-block btn-primary mt-3" %>
+          </div>
+        <% end %>
+        <hr>
+        <div class="text-center">
+        <%- if controller_name != 'sessions' %>
+          <%= link_to "ログイン画面へ", new_session_path(resource_name) %><br />
+        <% end %>
+        </div>
+        <br />
+        </div>
+      </div>
+    </div>
+</main>

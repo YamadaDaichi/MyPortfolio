@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="mx-auto w-50">
+  <h3 class="text-center mt-3">プロフィールを編集</h3>
+  <%= form_with model:@user, local:true do |f| %>
+    <div class="text-center">
+    <%= attachment_image_tag @user, :profile_image, :fill, 120, 120, fallback: "no_image.jpg", class: 'mt-1 rounded-circle'%>
+    </div>
+    <div class="text-center">
+    <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+    </div>
+    <hr>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, autofocus: true, placeholder:"名前", class: 'form-control mb-3', id:'user_name' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :introduction %>
+      <%= f.text_area :introduction, rows: 3, class: 'form-control', id:'user_introduction' %>
+    </div>
+    <%= f.submit "変更を保存", class: 'btn btn-primary'%>
+  <% end %>
+  </div>
+</div>

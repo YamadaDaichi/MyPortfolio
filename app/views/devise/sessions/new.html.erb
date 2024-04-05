@@ -1,0 +1,41 @@
+<main >
+  <p id="notice"><%= flash[:notice] %></p>
+
+    <div class='row no-gutters'>
+      <div class="col-md-6 col-sm-6 mx-2 mx-sm-auto shadow-lg rounded shadow-lg rounded px-0 my-5">
+        <h3 class="text-center pt-3">ログイン</h3>
+        <div class="form-body px-5">
+        <hr>
+        <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+          <div class="form-group">
+            <%= f.label :email %><br />
+            <%= f.text_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+          </div>
+          <div class="field">
+            <% if devise_mapping.rememberable? %>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end %>
+          </div>
+          <div class="actions">
+            <%= f.submit "ログイン", class: "btn btn-lg btn-block btn-primary mb-2" %>
+          </div>
+        <% end %>
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "パスワードを忘れた方", new_password_path(resource_name) %><br />
+        <% end %>
+        <hr>
+        <p class="text-center"><strong>はじめての方はこちら</strong></p>
+        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+          <%= link_to "サインイン", new_registration_path(resource_name), class: "btn btn-block btn-outline-secondary mb-3" %><br />
+        <% end %>
+        </div>
+      </div>
+    </div>
+</main>

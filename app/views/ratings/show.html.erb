@@ -1,0 +1,82 @@
+<main>
+  <div class="container">
+    <div>
+      <div class="mx-auto w-75">
+        <div>
+          <div class="mt-4 mb-3">
+            <strong><h3><%= @rating.subject_name %></h3></strong>
+          </div>
+          <div>
+            <p><%= @rating.faculty %> <%= @rating.department %></p>
+            <p><%= @rating.professor_name %></p>
+          </div>
+        </div>
+          <h3 class="bg-success text-light text-center p-3 mb-3　">
+            <%= @rating.nickname %>さんの授業評価
+          </h3>
+          <table class="table">
+            <tbody>
+              <tr class="">
+                <th class="">授業種別</th>
+                <td class=""><%= @rating.class_type %></td>
+              </tr>
+              <tr>
+                <th>内容</th>
+                <td><%= @rating.body %></td>
+              </tr>
+              <tr>
+                <th>テスト</th>
+                <td><%= @rating.exam_content %></td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <p><%= @rating.created_at.strftime('%Y/%m/%d') %></p>
+            <% if @rating.favorited_by?(current_user) %>
+              <p>
+                <%= link_to rating_favorites_path(@rating), method: :delete do %>
+                  <i class="fa-solid fa-heart"></i> <%= @rating.favorites.count %>
+                <% end %>
+              </p>
+              <% else %>
+              <p>
+                <%= link_to rating_favorites_path(@rating), method: :post do %>
+                  <i class="fa-regular fa-heart"></i> <%= @rating.favorites.count %>
+                <% end %>
+              </p>
+            <% end %>
+            <div class="btn-toolbar">
+              <% if @rating.user == current_user %>
+                <div class="btn-group ml-auto">
+                  <%= link_to "編集", edit_rating_path(@rating.id), class:'btn btn-primary mr-2' %>
+                </div>
+                  <%= link_to "削除", rating_path(@rating.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:'btn btn-danger' %>
+              <% end %>
+            </div>
+          </div>
+          <div>
+            <h3 class="mt-5">コメント一覧 <span>(<%= @rating.comments.count %>件)</span></h3>
+            <hr>
+            <div class="">
+              <% @rating.comments.each do |comment| %>
+                <%= attachment_image_tag comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+                <span><strong><%= comment.user.name %></strong></span> <%= comment.created_at.strftime('%Y/%m/%d')%><br>
+                <%= comment.content %>
+                <% if comment.user == current_user %>
+                <div class="mb-3 text-right">
+                  <%= link_to "削除する", rating_comment_path(comment.rating, comment), method: :delete %>
+                </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <div class="">
+          <%= form_with(model:[@rating, @comment], local: true) do |f| %>
+            <%= f.text_area :content, rows:'5', class: 'form-control', placeholder: "コメントをここに" %><br>
+            <%= f.submit "コメントする", class: 'btn btn-primary' %>
+          <% end %>
+          </div>
+      </div>
+    </div>
+  </div>
+</main>

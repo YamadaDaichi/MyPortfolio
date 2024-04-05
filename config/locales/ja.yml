@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    attributes:
+      rating:
+        nickname: ニックネーム
+        class_type: 授業種別
+        subject_name: 授業名
+        body: 授業の内容や学んだこと
+        exam_content: テストの内容
+        faculty: 学部
+        department: 学科
+        professor_name: 教授、講師
+      user:
+        name: 名前
+        introduction: 自己紹介
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: 次回から自動的にログイン

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subject_name: MyText
+  class_type: MyText
+  faculty: MyText
+  professor_name: MyText
+  body: MyText
+  exam_content: MyText
+  nickname: MyText
+  user_id: 1
+
+two:
+  subject_name: MyText
+  class_type: MyText
+  faculty: MyText
+  professor_name: MyText
+  body: MyText
+  exam_content: MyText
+  nickname: MyText
+  user_id: 1
