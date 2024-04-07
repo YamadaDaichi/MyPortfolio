@@ -1,7 +1,7 @@
 <div class="profile-wrap m-4">
   <div class="row text-center">
-    <div class="col-4 text-center">
-      <%= attachment_image_tag @user, :profile_image, :fill, 120, 120, format: 'jpeg', fallback: "no_image.jpg" %>
+    <div class="col-4">
+      <%= attachment_image_tag @user, :profile_image, :fill, 120, 120, format: 'jpeg', fallback: "no_image.jpg", class: 'rounded-circle' %>
     </div>
     <div class="col-8 text-center">
       <div class="row">

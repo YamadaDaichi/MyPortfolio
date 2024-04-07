@@ -3,7 +3,7 @@
   <h3 class="text-center mt-3">プロフィールを編集</h3>
   <%= form_with model:@user, local:true do |f| %>
     <div class="text-center">
-    <%= attachment_image_tag @user, :profile_image, :fill, 120, 120, fallback: "no_image.jpg", class: 'mt-1 rounded-circle'%>
+    <%= attachment_image_tag @user, :profile_image, :fill, 120, 120, fallback: "no_image.jpg", class: 'my-2 rounded-circle' %>
     </div>
     <div class="text-center">
     <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
